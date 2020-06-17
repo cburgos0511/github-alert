@@ -29,7 +29,7 @@ number_of_commits = [item['data-count']
                      for item in page_soup.find_all('rect', attrs={'data-date': today})]
 
 
-#
+# function for commit checker
 def commit_check():
     print('Scheduler running everyday at 10pm')
     if number_of_commits[0] == '0':
@@ -38,6 +38,7 @@ def commit_check():
         f.write(
             f"  {today}             {number_of_commits[0]}              {pass_fail}  \n-------------|---------------------|------------ \n")
         f.close()
+
 
 schedule.every().day.at('10:00').do(commit_check)
 
